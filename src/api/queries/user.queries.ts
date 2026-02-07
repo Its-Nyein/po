@@ -28,5 +28,6 @@ export function useSearch(q: string) {
       const res = await userService.search(q);
       return res.data;
     },
+    enabled: q.trim().length > 0,
   });
 }

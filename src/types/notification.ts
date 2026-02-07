@@ -2,11 +2,12 @@ import type { User } from "./user";
 
 export interface Notification {
   id: number;
-  type: "like" | "comment";
+  type: "like" | "comment" | "follow";
   content: string;
   userId: number;
-  postId: number;
+  actorId: number;
+  postId: number | null;
   read: boolean;
-  user: User;
+  actor: User;
   createdAt: string;
 }

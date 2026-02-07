@@ -8,6 +8,7 @@ export function useFollow() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       queryClient.invalidateQueries({ queryKey: ["search"] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 }
@@ -19,6 +20,7 @@ export function useUnfollow() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
       queryClient.invalidateQueries({ queryKey: ["search"] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
   });
 }
