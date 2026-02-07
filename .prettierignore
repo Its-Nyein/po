@@ -1,0 +1,29 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+build
+
+# Vite
+.vite
+*.local
+
+# Cache
+.cache
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# Package manager locks
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Auto-generated files
+*.min.js
+*.min.css

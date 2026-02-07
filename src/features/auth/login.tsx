@@ -1,0 +1,70 @@
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "@/lib/use-auth";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { toast } from "sonner";
+
+export default function LoginPage() {
+  const navigate = useNavigate();
+  const { login, isLoading } = useAuth();
+  const [error, setError] = useState<string | null>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    const username = usernameRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if (!username || !password) {
+      setError("Username and password required.");
+      return;
+    }
+
+    const success = await login(username, password);
+    if (success) {
+      toast.success("Login successful");
+      navigate("/");
+    } else {
+      setError("Incorrect username or password");
+    }
+  };
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>LOGIN</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {error && <p className="text-destructive text-sm mb-3">{error}</p>}
+        <form onSubmit={handleSubmit} className="space-y-3" id="login-form">
+          <Input ref={usernameRef} placeholder="Username" autoFocus />
+          <Input ref={passwordRef} type="password" placeholder="Password" />
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </Button>
+        </form>
+      </CardContent>
+      <CardFooter className="justify-center">
+        <p className="text-sm text-muted-foreground">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-primary hover:text-primary/80 transition-colors"
+          >
+            Register
+          </Link>
+        </p>
+      </CardFooter>
+    </Card>
+  );
+}
