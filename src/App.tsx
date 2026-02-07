@@ -20,12 +20,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <RouterProvider router={router} />
-          <Toaster
-            position="bottom-right"
-            toastOptions={{
-              className: "border-primary/20 bg-background text-foreground",
-            }}
-          />
+          <Toaster position="bottom-right" richColors={false} closeButton />
         </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>

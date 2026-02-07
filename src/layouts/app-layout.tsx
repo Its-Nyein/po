@@ -21,6 +21,7 @@ import { useAuth } from "@/lib/use-auth";
 import { useWebSocket } from "@/hooks/use-websocket";
 import { LogOut, User } from "lucide-react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { routeTitles } from "./route-titles";
 
 export function AppLayout() {
@@ -110,6 +111,7 @@ export function AppLayout() {
                   <DropdownMenuItem
                     onClick={() => {
                       logout();
+                      toast.success("Logged out successfully");
                       navigate("/login");
                     }}
                     variant="destructive"

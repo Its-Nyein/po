@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/use-auth";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { TronReticle } from "@/components/tron/TronReticle";
 import {
   Card,
   CardContent,
@@ -50,8 +51,16 @@ export default function LoginPage() {
           <Input ref={usernameRef} placeholder="Username" autoFocus />
           <Input ref={passwordRef} type="password" placeholder="Password" />
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Logging in..." : "Login"}
+            Login
           </Button>
+          {isLoading && (
+            <div className="flex flex-col items-center gap-2 pt-2">
+              <TronReticle size="md" />
+              <p className="text-xs text-primary/70 font-heading tracking-widest uppercase animate-pulse">
+                Authenticating...
+              </p>
+            </div>
+          )}
         </form>
       </CardContent>
       <CardFooter className="justify-center">
