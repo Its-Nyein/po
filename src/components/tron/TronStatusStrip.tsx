@@ -54,20 +54,20 @@ export function TronStatusStrip({
   return (
     <div
       className={cn(
-        "flex items-center justify-between px-4 py-2 border-b border-primary/20",
+        "flex items-center justify-between px-2 md:px-4 py-1.5 md:py-2 border-b border-primary/20",
         "bg-background/50 backdrop-blur-sm",
         className,
       )}
     >
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3 md:gap-6">
         {items.map((item, index) => (
-          <div key={index} className="flex items-center gap-2">
-            <span className="text-xs text-muted-foreground uppercase tracking-wider font-heading">
+          <div key={index} className="flex items-center gap-1 md:gap-2">
+            <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider font-heading">
               {item.label}:
             </span>
             <span
               className={cn(
-                "text-sm font-medium",
+                "text-xs md:text-sm font-medium",
                 statusColors[item.status || "normal"],
               )}
             >
@@ -78,11 +78,11 @@ export function TronStatusStrip({
       </div>
 
       {showTime && (
-        <div className="flex items-center gap-4">
-          <span className="text-xs text-muted-foreground uppercase tracking-wider font-heading">
+        <div className="flex items-center gap-2 md:gap-4">
+          <span className="hidden sm:inline text-xs text-muted-foreground uppercase tracking-wider font-heading">
             {formatDate(currentTime)}
           </span>
-          <span className="text-sm font-medium text-primary font-heading tracking-widest">
+          <span className="text-xs md:text-sm font-medium text-primary font-heading tracking-widest">
             {formatTime(currentTime)}
           </span>
         </div>
