@@ -12,6 +12,17 @@ export function useCreateComment() {
   });
 }
 
+export function useUpdateComment() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, content }: { id: number; content: string }) =>
+      commentService.update(id, content),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["comments"] });
+    },
+  });
+}
+
 export function useDeleteComment() {
   const queryClient = useQueryClient();
   return useMutation({

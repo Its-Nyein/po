@@ -1,16 +1,21 @@
-import { useRef } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { usePost, useDeletePost } from "@/api/queries/post.queries";
 import {
   useCreateComment,
   useDeleteComment,
+  useUpdateComment,
 } from "@/api/queries/comment.queries";
+import {
+  useDeletePost,
+  usePost,
+  useUpdatePost,
+} from "@/api/queries/post.queries";
 import { PostCard } from "@/components/post-card";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { TronReticle } from "@/components/tron/TronReticle";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import type { Comment } from "@/types/post";
+import { useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function CommentsPage() {
   const { id } = useParams();
@@ -20,7 +25,9 @@ export default function CommentsPage() {
   const { data, isLoading, isError, error } = usePost(Number(id));
   const createComment = useCreateComment();
   const deleteComment = useDeleteComment();
+  const updateComment = useUpdateComment();
   const deletePost = useDeletePost();
+  const updatePost = useUpdatePost();
 
   const handleDeletePost = (postId: number) => {
     deletePost.mutate(postId, {
@@ -35,6 +42,20 @@ export default function CommentsPage() {
     deleteComment.mutate(commentId, {
       onSuccess: () => toast.success("Comment deleted"),
     });
+  };
+
+  const handleEditPost = (postId: number, content: string) => {
+    updatePost.mutate(
+      { id: postId, content },
+      { onSuccess: () => toast.success("Post updated") },
+    );
+  };
+
+  const handleEditComment = (commentId: number, content: string) => {
+    updateComment.mutate(
+      { id: commentId, content },
+      { onSuccess: () => toast.success("Comment updated") },
+    );
   };
 
   const handleAddComment = (e: React.FormEvent) => {
@@ -69,7 +90,12 @@ export default function CommentsPage() {
 
   return (
     <div>
-      <PostCard item={data} primary remove={handleDeletePost} />
+      <PostCard
+        item={data}
+        primary
+        remove={handleDeletePost}
+        onEdit={handleEditPost}
+      />
 
       {data?.comments?.map((comment: Comment) => (
         <PostCard
@@ -77,6 +103,7 @@ export default function CommentsPage() {
           item={comment}
           comment
           remove={handleDeleteComment}
+          onEdit={handleEditComment}
         />
       ))}
 

@@ -23,6 +23,7 @@ Pre-commit hooks (Husky + lint-staged) auto-run eslint --fix and prettier --writ
 ### Routing (`src/router/route.tsx`)
 
 React Router v7 with two layout groups:
+
 - **AppLayout** (protected) — wraps `/`, `/comments/:id`, `/profile/:id`, `/likes/:type/:id`, `/search`, `/notifications`
 - **AuthLayout** (public) — wraps `/login`, `/register`
 

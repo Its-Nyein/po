@@ -11,6 +11,7 @@ import ProfilePage from "@/features/profile/index";
 import LikesPage from "@/features/likes/index";
 import SearchPage from "@/features/search/index";
 import NotificationsPage from "@/features/notifications/index";
+import BookmarksPage from "@/features/bookmarks/index";
 import NotFoundPage from "@/not-found";
 
 export const router = createBrowserRouter([
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path: "notifications",
         element: <NotificationsPage />,
+      },
+      {
+        path: "bookmarks",
+        element: <BookmarksPage />,
       },
       {
         path: "*",

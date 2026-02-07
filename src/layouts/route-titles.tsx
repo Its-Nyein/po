@@ -5,4 +5,5 @@ export const routeTitles: Record<string, string> = {
   "/likes/:type/:id": "Likes",
   "/search": "Search",
   "/notifications": "Notifications",
+  "/bookmarks": "Bookmarks",
 };

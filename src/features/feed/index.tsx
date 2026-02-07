@@ -1,21 +1,33 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import {
+  useDeletePost,
+  usePosts,
+  useUpdatePost,
+} from "@/api/queries/post.queries";
 import { PostCard } from "@/components/post-card";
 import { PostForm } from "@/components/post-form";
-import { usePosts, useDeletePost } from "@/api/queries/post.queries";
 import { TronReticle } from "@/components/tron/TronReticle";
-import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import type { Post } from "@/types/post";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function FeedPage() {
   const [showLatest, setShowLatest] = useState(true);
   const { data, isLoading, isError, error } = usePosts(showLatest);
   const deletePost = useDeletePost();
+  const updatePost = useUpdatePost();
 
   const handleDelete = (id: number) => {
     deletePost.mutate(id, {
       onSuccess: () => toast.success("Post deleted"),
     });
+  };
+
+  const handleEdit = (id: number, content: string) => {
+    updatePost.mutate(
+      { id, content },
+      { onSuccess: () => toast.success("Post updated") },
+    );
   };
 
   if (isLoading) {
@@ -55,7 +67,12 @@ export default function FeedPage() {
       </div>
 
       {(data as Post[])?.map((post: Post) => (
-        <PostCard key={post.id} item={post} remove={handleDelete} />
+        <PostCard
+          key={post.id}
+          item={post}
+          remove={handleDelete}
+          onEdit={handleEdit}
+        />
       ))}
 
       {data?.length === 0 && (
