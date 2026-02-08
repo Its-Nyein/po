@@ -6,4 +6,5 @@ export const routeTitles: Record<string, string> = {
   "/search": "Search",
   "/notifications": "Notifications",
   "/bookmarks": "Bookmarks",
+  "/settings": "Settings",
 };

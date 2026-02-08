@@ -71,11 +71,12 @@ src/
 ├── components/
 │   ├── ui/             # shadcn/ui base components
 │   ├── tron/           # Tron 3D effect components (Three.js)
-│   ├── post-card.tsx   # Post display with rich content
-│   ├── like-button.tsx # Like toggle
-│   ├── repost-button.tsx # Repost toggle
-│   ├── rich-content.tsx  # Renders #hashtags and @mentions as links
+│   ├── post-card.tsx       # Post display with rich content
+│   ├── like-button.tsx     # Like toggle
+│   ├── repost-button.tsx   # Repost toggle
+│   ├── rich-content.tsx    # Renders #hashtags and @mentions as links
 │   ├── mention-textarea.tsx # Textarea with @mention autocomplete dropdown
+│   ├── password-input.tsx  # Password input with show/hide toggle
 │   └── ...
 ├── contexts/           # React Context (auth)
 ├── features/           # Page-level components
@@ -88,7 +89,8 @@ src/
 │   ├── hashtag/        # Hashtag posts page
 │   ├── user/           # Username resolver (redirects to profile)
 │   ├── likes/          # Likers list
-│   └── search/         # User search
+│   ├── search/         # User search
+│   └── settings/       # Account settings
 ├── hooks/              # Custom hooks (mobile detection, WebSocket)
 ├── layouts/            # App and Auth layouts
 ├── lib/                # API client, auth hook, theme hook, utils
@@ -126,6 +128,7 @@ React Router v7 with two layout groups:
 | `/bookmarks`       | Bookmarks         | Required |
 | `/hashtag/:tag`    | Hashtag posts     | Required |
 | `/user/:username`  | Username resolver | Required |
+| `/settings`        | Account settings  | Required |
 | `/login`           | Login             | Public   |
 | `/register`        | Register          | Public   |
 
@@ -141,6 +144,7 @@ React Router v7 with two layout groups:
 - **Mentions** — `@username` in post/comment content renders as a clickable link to the user's profile; typing `@` in any textarea shows an autocomplete dropdown of followed users with keyboard navigation (arrow keys, Enter, Escape)
 - **Rich content rendering** — Hashtags and mentions are parsed and displayed as interactive links
 - **Real-time notifications** via WebSocket for likes, comments, follows, reposts, and mentions
+- **Account settings** — edit profile, change password, and delete account with confirmation dialog
 - **User search** by name
 - **Tron visual theme** — Custom 3D grid, reticle, scanlines, and status strip using Three.js
 

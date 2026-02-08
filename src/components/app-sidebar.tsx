@@ -1,10 +1,6 @@
 import { useNotifications } from "@/api/queries/notification.queries";
 import { PoLogo } from "@/components/po-logo";
 import { Badge } from "@/components/ui/badge";
-import { useAuth } from "@/lib/use-auth";
-import { Bell, Home, Search, UserCircle, type LucideIcon } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-
 import {
   Sidebar,
   SidebarContent,
@@ -17,6 +13,16 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { useAuth } from "@/lib/use-auth";
+import {
+  Bell,
+  Home,
+  Search,
+  Settings,
+  UserCircle,
+  type LucideIcon,
+} from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItem {
   title: string;
@@ -46,6 +52,11 @@ export function AppSidebar() {
       title: "Profile",
       url: `/profile/${user?.id}`,
       icon: UserCircle,
+    },
+    {
+      title: "Settings",
+      url: "/settings",
+      icon: Settings,
     },
   ];
 

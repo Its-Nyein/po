@@ -1,18 +1,19 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import { AppLayout } from "@/layouts/app-layout";
 import { ProtectedRoute } from "@/components/protected-route";
+import { AppLayout } from "@/layouts/app-layout";
 import { AuthLayout } from "@/layouts/auth-layout";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import FeedPage from "@/features/feed/index";
 import LoginPage from "@/features/auth/login";
 import RegisterPage from "@/features/auth/register";
+import BookmarksPage from "@/features/bookmarks/index";
+import FeedPage from "@/features/feed/index";
+import HashtagPage from "@/features/hashtag/index";
+import LikesPage from "@/features/likes/index";
+import NotificationsPage from "@/features/notifications/index";
 import CommentsPage from "@/features/post/comments";
 import ProfilePage from "@/features/profile/index";
-import LikesPage from "@/features/likes/index";
 import SearchPage from "@/features/search/index";
-import NotificationsPage from "@/features/notifications/index";
-import BookmarksPage from "@/features/bookmarks/index";
-import HashtagPage from "@/features/hashtag/index";
+import SettingsPage from "@/features/settings/index";
 import UserByUsernamePage from "@/features/user/index";
 import NotFoundPage from "@/not-found";
 
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
       {
         path: "user/:username",
         element: <UserByUsernamePage />,
+      },
+      {
+        path: "settings",
+        element: <SettingsPage />,
       },
       {
         path: "*",

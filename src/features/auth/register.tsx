@@ -1,7 +1,5 @@
-import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "@/api/queries/auth.queries";
-import { Input } from "@/components/ui/input";
+import { PasswordInput } from "@/components/password-input";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,6 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function RegisterPage() {
@@ -60,7 +61,7 @@ export default function RegisterPage() {
           <Input ref={nameRef} placeholder="Name" autoFocus />
           <Input ref={usernameRef} placeholder="Username" />
           <Input ref={bioRef} placeholder="Bio" />
-          <Input ref={passwordRef} type="password" placeholder="Password" />
+          <PasswordInput ref={passwordRef} placeholder="Password" />
           <Button
             type="submit"
             className="w-full"

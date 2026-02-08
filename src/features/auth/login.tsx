@@ -1,9 +1,6 @@
-import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@/lib/use-auth";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { PasswordInput } from "@/components/password-input";
 import { TronReticle } from "@/components/tron/TronReticle";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,6 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useAuth } from "@/lib/use-auth";
+import { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function LoginPage() {
@@ -49,7 +50,7 @@ export default function LoginPage() {
         {error && <p className="text-destructive text-sm mb-3">{error}</p>}
         <form onSubmit={handleSubmit} className="space-y-3" id="login-form">
           <Input ref={usernameRef} placeholder="Username" autoFocus />
-          <Input ref={passwordRef} type="password" placeholder="Password" />
+          <PasswordInput ref={passwordRef} placeholder="Password" />
           <Button type="submit" className="w-full" disabled={isLoading}>
             Login
           </Button>

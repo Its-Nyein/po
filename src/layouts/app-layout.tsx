@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useWebSocket } from "@/hooks/use-websocket";
 import { useAuth } from "@/lib/use-auth";
-import { LogOut, User } from "lucide-react";
+import { LogOut, Settings, User } from "lucide-react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { routeTitles } from "./route-titles";
@@ -110,6 +110,10 @@ export function AppLayout() {
                   >
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/settings")}>
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem

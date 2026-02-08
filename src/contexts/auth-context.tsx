@@ -1,3 +1,5 @@
+import { authService } from "@/api/services/auth.service";
+import type { User } from "@/types/user";
 import type { ReactNode } from "react";
 import {
   createContext,
@@ -6,14 +8,13 @@ import {
   useMemo,
   useState,
 } from "react";
-import { authService } from "@/api/services/auth.service";
-import type { User } from "@/types/user";
 
 export interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
+  updateUser: (user: User) => void;
   isLoading: boolean;
   isInitializing: boolean;
 }
@@ -72,16 +73,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }, []);
 
+  const updateUser = useCallback((updatedUser: User) => {
+    setUser(updatedUser);
+  }, []);
+
   const value: AuthContextType = useMemo(
     () => ({
       user,
       isAuthenticated: !!user,
       login,
       logout,
+      updateUser,
       isLoading,
       isInitializing,
     }),
-    [user, login, logout, isLoading, isInitializing],
+    [user, login, logout, updateUser, isLoading, isInitializing],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

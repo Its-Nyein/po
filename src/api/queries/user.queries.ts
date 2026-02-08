@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { userService } from "../services/user.service";
 
 export function useUsers() {
@@ -40,5 +40,29 @@ export function useSearch(q: string) {
       return res.data;
     },
     enabled: q.trim().length > 0,
+  });
+}
+
+export function useUpdateProfile() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: { name: string; username: string; bio: string }) =>
+      userService.updateProfile(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+}
+
+export function useChangePassword() {
+  return useMutation({
+    mutationFn: (data: { oldPassword: string; newPassword: string }) =>
+      userService.changePassword(data),
+  });
+}
+
+export function useDeleteAccount() {
+  return useMutation({
+    mutationFn: () => userService.deleteAccount(),
   });
 }
