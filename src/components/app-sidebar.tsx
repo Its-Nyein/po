@@ -1,8 +1,9 @@
-import { Home, Search, Bell, UserCircle, type LucideIcon } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import { useAuth } from "@/lib/use-auth";
 import { useNotifications } from "@/api/queries/notification.queries";
+import { PoLogo } from "@/components/po-logo";
 import { Badge } from "@/components/ui/badge";
+import { useAuth } from "@/lib/use-auth";
+import { Bell, Home, Search, UserCircle, type LucideIcon } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   Sidebar,
@@ -55,8 +56,8 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/" className="group">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-sm bg-primary/20 text-primary border border-primary/50 shadow-[0_0_10px_var(--tron-dim)] group-hover:shadow-[0_0_15px_var(--tron-glow)] transition-all">
-                  <Home className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center text-primary group-hover:drop-shadow-[0_0_8px_var(--tron-glow)] transition-all">
+                  <PoLogo size={28} />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-heading text-primary tracking-wider">

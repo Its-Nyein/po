@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { followService } from "../services/follow.service";
 
 export function useFollow() {
@@ -22,5 +22,12 @@ export function useUnfollow() {
       queryClient.invalidateQueries({ queryKey: ["search"] });
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
+  });
+}
+
+export function useFollowingUsers() {
+  return useQuery({
+    queryKey: ["following", "users"],
+    queryFn: () => followService.getFollowingUsers().then((res) => res.data),
   });
 }

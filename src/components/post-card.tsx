@@ -20,7 +20,10 @@ import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BookmarkButton } from "./bookmark-button";
 import { CommentButton } from "./comment-button";
+import { EmbeddedPost } from "./embedded-post";
 import { LikeButton } from "./like-button";
+import { RepostButton } from "./repost-button";
+import { RichContent } from "./rich-content";
 
 interface PostCardProps {
   item: Post | Comment;
@@ -135,7 +138,15 @@ export function PostCard({
             </div>
           </div>
         ) : (
-          <p className="my-3 text-foreground">{item.content}</p>
+          <p className="my-3 text-foreground">
+            <RichContent content={item.content} />
+          </p>
+        )}
+
+        {!comment && (item as Post).quotedPost && (
+          <div className="mb-3">
+            <EmbeddedPost post={(item as Post).quotedPost!} />
+          </div>
         )}
 
         <div className="flex justify-between items-center">
@@ -151,6 +162,7 @@ export function PostCard({
           </div>
           <div className="flex items-center gap-1">
             <LikeButton item={item} comment={comment} />
+            {!comment && <RepostButton item={item as Post} />}
             {!comment && <CommentButton item={item as Post} />}
             {!comment && <BookmarkButton postId={item.id} />}
           </div>

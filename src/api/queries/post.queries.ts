@@ -26,7 +26,13 @@ export function usePost(id: number) {
 export function useCreatePost() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (content: string) => postService.create(content),
+    mutationFn: ({
+      content,
+      quotedPostId,
+    }: {
+      content: string;
+      quotedPostId?: number;
+    }) => postService.create(content, quotedPostId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
     },

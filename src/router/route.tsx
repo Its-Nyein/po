@@ -12,6 +12,8 @@ import LikesPage from "@/features/likes/index";
 import SearchPage from "@/features/search/index";
 import NotificationsPage from "@/features/notifications/index";
 import BookmarksPage from "@/features/bookmarks/index";
+import HashtagPage from "@/features/hashtag/index";
+import UserByUsernamePage from "@/features/user/index";
 import NotFoundPage from "@/not-found";
 
 export const router = createBrowserRouter([
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
       {
         path: "bookmarks",
         element: <BookmarksPage />,
+      },
+      {
+        path: "hashtag/:tag",
+        element: <HashtagPage />,
+      },
+      {
+        path: "user/:username",
+        element: <UserByUsernamePage />,
       },
       {
         path: "*",

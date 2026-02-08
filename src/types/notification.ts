@@ -2,7 +2,7 @@ import type { User } from "./user";
 
 export interface Notification {
   id: number;
-  type: "like" | "comment" | "follow";
+  type: "like" | "comment" | "follow" | "quote" | "mention";
   content: string;
   userId: number;
   actorId: number;

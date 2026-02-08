@@ -11,7 +11,7 @@ import {
 import { PostCard } from "@/components/post-card";
 import { TronReticle } from "@/components/tron/TronReticle";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import { MentionTextarea } from "@/components/mention-textarea";
 import type { Comment } from "@/types/post";
 import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -108,7 +108,7 @@ export default function CommentsPage() {
       ))}
 
       <form onSubmit={handleAddComment} className="mt-4 space-y-2">
-        <Textarea ref={contentRef} placeholder="Your comment" />
+        <MentionTextarea ref={contentRef} placeholder="Your comment" />
         <Button type="submit" disabled={createComment.isPending}>
           Reply
         </Button>

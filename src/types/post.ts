@@ -8,6 +8,9 @@ export interface Post {
   user: User;
   comments?: Comment[];
   likes?: PostLike[];
+  quotedPostId?: number | null;
+  quotedPost?: Post | null;
+  quoteCount?: number;
   createdAt: string;
 }
 

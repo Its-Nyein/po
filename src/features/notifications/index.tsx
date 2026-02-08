@@ -9,13 +9,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { Notification } from "@/types/notification";
 import { format } from "date-fns";
-import { Heart, MessageCircle, UserPlus } from "lucide-react";
+import { AtSign, Heart, MessageCircle, Quote, UserPlus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const notiIcon = {
+const notiIcon: Record<string, React.ReactNode> = {
   like: <Heart className="w-5 h-5 text-destructive mt-0.5 shrink-0" />,
   comment: <MessageCircle className="w-5 h-5 text-primary mt-0.5 shrink-0" />,
   follow: <UserPlus className="w-5 h-5 text-primary mt-0.5 shrink-0" />,
+  quote: <Quote className="w-5 h-5 text-green-400 mt-0.5 shrink-0" />,
+  mention: <AtSign className="w-5 h-5 text-primary mt-0.5 shrink-0" />,
 };
 
 export default function NotificationsPage() {

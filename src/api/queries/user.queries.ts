@@ -21,6 +21,17 @@ export function useUser(id: number) {
   });
 }
 
+export function useUserByUsername(username: string) {
+  return useQuery({
+    queryKey: ["users", "username", username],
+    queryFn: async () => {
+      const res = await userService.getByUsername(username);
+      return res.data;
+    },
+    enabled: username.length > 0,
+  });
+}
+
 export function useSearch(q: string) {
   return useQuery({
     queryKey: ["search", q],
