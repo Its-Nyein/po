@@ -5,6 +5,7 @@ import {
 } from "@/api/queries/post.queries";
 import { PostCard } from "@/components/post-card";
 import { PostForm } from "@/components/post-form";
+import { StoryTray } from "@/components/story-tray";
 import { TronReticle } from "@/components/tron/TronReticle";
 import { Button } from "@/components/ui/button";
 import type { Post } from "@/types/post";
@@ -46,6 +47,7 @@ export default function FeedPage() {
 
   return (
     <div>
+      <StoryTray />
       <PostForm />
 
       <div className="flex items-center justify-center gap-2 mb-4">

@@ -14,6 +14,7 @@ import CommentsPage from "@/features/post/comments";
 import ProfilePage from "@/features/profile/index";
 import SearchPage from "@/features/search/index";
 import SettingsPage from "@/features/settings/index";
+import StoryViewerPage from "@/features/stories/story-viewer";
 import UserByUsernamePage from "@/features/user/index";
 import NotFoundPage from "@/not-found";
 
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "user/:username",
         element: <UserByUsernamePage />,
+      },
+      {
+        path: "stories/:userId",
+        element: <StoryViewerPage />,
       },
       {
         path: "settings",
