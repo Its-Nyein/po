@@ -1,11 +1,13 @@
+import { useUnreadMessageCount } from "@/api/queries/message.queries";
 import { useNotifications } from "@/api/queries/notification.queries";
 import { useAuth } from "@/lib/use-auth";
-import { Bell, Home, Search, UserCircle } from "lucide-react";
+import { Bell, Home, MessageCircle, Search, UserCircle } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { title: "Feed", url: "/", icon: Home },
   { title: "Search", url: "/search", icon: Search },
+  { title: "Messages", url: "/messages", icon: MessageCircle },
   { title: "Notifications", url: "/notifications", icon: Bell },
   { title: "Profile", url: "/profile", icon: UserCircle },
 ] as const;
@@ -14,6 +16,7 @@ export function MobileBottomNav() {
   const location = useLocation();
   const { user } = useAuth();
   const { data: notis } = useNotifications();
+  const { data: messageUnread } = useUnreadMessageCount();
 
   const unreadCount =
     notis?.filter((n: { read: boolean }) => !n.read).length ?? 0;
@@ -49,6 +52,11 @@ export function MobileBottomNav() {
               {item.title === "Notifications" && unreadCount > 0 && (
                 <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-bold text-white">
                   {unreadCount > 99 ? "99+" : unreadCount}
+                </span>
+              )}
+              {item.title === "Messages" && (messageUnread ?? 0) > 0 && (
+                <span className="absolute -top-1.5 -right-2.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-destructive px-1 text-[10px] font-bold text-white">
+                  {(messageUnread ?? 0) > 99 ? "99+" : messageUnread}
                 </span>
               )}
             </span>

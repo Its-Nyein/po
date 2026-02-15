@@ -2,6 +2,7 @@ import { useBookmarks } from "@/api/queries/bookmark.queries";
 import { useDeletePost, useUpdatePost } from "@/api/queries/post.queries";
 import { useUser } from "@/api/queries/user.queries";
 import { FollowButton } from "@/components/follow-button";
+import { MessageButton } from "@/components/message-button";
 import { PostCard } from "@/components/post-card";
 import { TronReticle } from "@/components/tron/TronReticle";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -81,7 +82,10 @@ export default function ProfilePage() {
             </Link>
           </div>
         </div>
-        {data && <FollowButton user={data} />}
+        <div className="flex gap-2">
+          {data && <FollowButton user={data} />}
+          {data && <MessageButton userId={data.id} />}
+        </div>
       </div>
 
       {isOwnProfile && (

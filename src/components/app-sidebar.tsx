@@ -1,3 +1,4 @@
+import { useUnreadMessageCount } from "@/api/queries/message.queries";
 import { useNotifications } from "@/api/queries/notification.queries";
 import { PoLogo } from "@/components/po-logo";
 import { Badge } from "@/components/ui/badge";
@@ -17,6 +18,7 @@ import { useAuth } from "@/lib/use-auth";
 import {
   Bell,
   Home,
+  MessageCircle,
   Search,
   Settings,
   UserCircle,
@@ -35,6 +37,7 @@ export function AppSidebar() {
   const location = useLocation();
   const { user } = useAuth();
   const { data: notis } = useNotifications();
+  const { data: messageUnread } = useUnreadMessageCount();
 
   const unreadCount =
     notis?.filter((n: { read: boolean }) => !n.read).length ?? 0;
@@ -42,6 +45,12 @@ export function AppSidebar() {
   const navItems: NavItem[] = [
     { title: "Feed", url: "/", icon: Home },
     { title: "Search", url: "/search", icon: Search },
+    {
+      title: "Messages",
+      url: "/messages",
+      icon: MessageCircle,
+      badge: messageUnread || 0,
+    },
     {
       title: "Notifications",
       url: "/notifications",

@@ -15,6 +15,8 @@ import FollowListPage from "@/features/profile/follow-list";
 import ProfilePage from "@/features/profile/index";
 import SearchPage from "@/features/search/index";
 import SettingsPage from "@/features/settings/index";
+import MessagesPage from "@/features/messages/index";
+import ChatPage from "@/features/messages/chat";
 import StoryViewerPage from "@/features/stories/story-viewer";
 import UserByUsernamePage from "@/features/user/index";
 import NotFoundPage from "@/not-found";
@@ -75,6 +77,14 @@ export const router = createBrowserRouter([
       {
         path: "stories/:userId",
         element: <StoryViewerPage />,
+      },
+      {
+        path: "messages",
+        element: <MessagesPage />,
+      },
+      {
+        path: "messages/:id",
+        element: <ChatPage />,
       },
       {
         path: "settings",
