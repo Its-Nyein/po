@@ -31,3 +31,17 @@ export function useFollowingUsers() {
     queryFn: () => followService.getFollowingUsers().then((res) => res.data),
   });
 }
+
+export function useFollowers(userId: number) {
+  return useQuery({
+    queryKey: ["users", userId, "followers"],
+    queryFn: () => followService.getFollowers(userId).then((res) => res.data),
+  });
+}
+
+export function useFollowing(userId: number) {
+  return useQuery({
+    queryKey: ["users", userId, "following"],
+    queryFn: () => followService.getFollowing(userId).then((res) => res.data),
+  });
+}

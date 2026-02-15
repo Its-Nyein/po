@@ -11,6 +11,7 @@ import HashtagPage from "@/features/hashtag/index";
 import LikesPage from "@/features/likes/index";
 import NotificationsPage from "@/features/notifications/index";
 import CommentsPage from "@/features/post/comments";
+import FollowListPage from "@/features/profile/follow-list";
 import ProfilePage from "@/features/profile/index";
 import SearchPage from "@/features/search/index";
 import SettingsPage from "@/features/settings/index";
@@ -38,6 +39,14 @@ export const router = createBrowserRouter([
       {
         path: "profile/:id",
         element: <ProfilePage />,
+      },
+      {
+        path: "profile/:id/followers",
+        element: <FollowListPage />,
+      },
+      {
+        path: "profile/:id/following",
+        element: <FollowListPage />,
       },
       {
         path: "likes/:type/:id",

@@ -11,7 +11,7 @@ import { useAuth } from "@/lib/use-auth";
 import type { Bookmark as BookmarkType } from "@/types/bookmark";
 import type { Post } from "@/types/post";
 import { Bookmark, FileText } from "lucide-react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function ProfilePage() {
@@ -67,18 +67,18 @@ export default function ProfilePage() {
           <p className="text-sm text-muted-foreground">@{data?.username}</p>
           <p className="text-sm text-muted-foreground mt-1">{data?.bio}</p>
           <div className="flex gap-4 justify-center mt-2 text-sm">
-            <span>
+            <Link to={`/profile/${id}/followers`} className="hover:underline">
               <strong className="text-primary">
                 {data?.followers?.length || 0}
               </strong>{" "}
               followers
-            </span>
-            <span>
+            </Link>
+            <Link to={`/profile/${id}/following`} className="hover:underline">
               <strong className="text-primary">
                 {data?.following?.length || 0}
               </strong>{" "}
               following
-            </span>
+            </Link>
           </div>
         </div>
         {data && <FollowButton user={data} />}
